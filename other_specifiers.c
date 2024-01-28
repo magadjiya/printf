@@ -2,31 +2,27 @@
 
 /**
  * other_specifiers - check other format specifiers
- * @otherFormats: strings, ints
+ * @format: strings, ints
  * Return: total length of string
  */
-int other_specifiers(const char *otherFormats, ...)
+int other_specifiers(const char *format, ...)
 {
 	int length = 0;
-	char *str;
+	char c;
 	va_list args;
 
-	va_start(args, otherFormats);
+	va_start(args, format);
 
-	switch (*otherFormats)
+	switch (*format)
 	{
-		case 's':
+		case 'c':
 		{
-			str = va_arg(args, char *);
-
-			while (*str != '\0')
-			{
-				write(1, str, 1);
-				str++;
-				length++;
-			}
+			c = va_arg(args, int);
+			write(1, &c, 1);
+			length++;
 			break;
 		}
 	}
+	va_end(args);
 	return (length);
 }

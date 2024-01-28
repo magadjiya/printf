@@ -9,6 +9,8 @@
 
 /* Function Declarations */
 int _printf(const char *format, ...);
-int other_specifiers(const char *otherFormats, ...);
+int other_specifiers(const char *format, ...);
+int _strlen(char *s);
+int _putchar(char c);
 
 #endif /* MAIN_H */
