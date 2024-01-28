@@ -1,6 +1,9 @@
 #include "main.h"
 
 /**
+ * other_specifiers - check other format specifiers
+ * @otherFormats: strings, ints
+ * Return: total length of string
  */
 int other_specifiers(const char *otherFormats, ...)
 {
