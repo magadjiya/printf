@@ -7,26 +7,33 @@
  */
 int _printf(const char *format, ...)
 {
-	int length = 0, i;
-	char *str;
+	int length = 0;
 	va_list args;
+	char c;
 
 	va_start(args, format);
-	while (*format != '\0')
+	if (format == NULL)
+		return (-1);
+
+	while (*format)
 	{
-		if (*format == '%')
+		if (*format != '%')
+		{
+			write(1, format, 1);
+			length++;
+		}
+		else
 		{
 			format++;
+			if (*format == '\0')
+				break;
 			switch (*format)
 			{
-				case 's':
+				case 'c':
 				{
-					str = va_arg(args, char *);
-					for (i = 0; i < _strlen(str); i++)
-					{
-						_putchar(str[i]);
-						length++;
-					}
+					c = va_arg(args, int);
+					write(1, &c, 1);
+					length++;
 					break;
 				}
 				case '%':
@@ -36,13 +43,10 @@ int _printf(const char *format, ...)
 					break;
 				}
 				default:
-					length += other_specifiers(format);
+					other_specifiers(format);
 			}
 		}
-		else
-			write(1, format, 1);
 		format++;
-		length++;
 	}
 	va_end(args);
 	return (length);
