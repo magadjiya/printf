@@ -1,11 +1,14 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/* header files */
+/* Header Files */
 #include <unistd.h>
 #include <stdarg.h>
 
-/* function declarations */
+/* Global Variables */
+
+/* Function Declarations */
 int _printf(const char *format, ...);
+int other_specifiers(const char *otherFormats, ...);
 
 #endif /* MAIN_H */
