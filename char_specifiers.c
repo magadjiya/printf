@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * other_specifiers - check other format specifiers
+ * char_specifiers - check other format specifiers
  * @format: strings, ints
  * @args: the argument list;
  * Return: total length of string
