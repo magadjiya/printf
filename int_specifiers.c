@@ -9,9 +9,7 @@
 int int_specifiers(const char *format, va_list args)
 {
 	int length = 0, integer, size;
-	va_list args;
 
-	va_start(args, format);
 	switch (*format)
 	{
 		case 'i':

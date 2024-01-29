@@ -6,7 +6,7 @@
  * @args: the argument list;
  * Return: total length of string
  */
-int other_specifiers(const char *format, va_list args)
+int char_specifiers(const char *format, va_list args)
 {
 	int length = 0;
 	char c;
@@ -35,7 +35,7 @@ int other_specifiers(const char *format, va_list args)
 			break;
 		}
 		default:
-			length += int_specifiers(format);
+			length += int_specifiers(format, args);
 	}
 	va_end(args);
 	return (length);
