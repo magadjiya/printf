@@ -9,7 +9,6 @@ int _printf(const char *format, ...)
 {
 	int length = 0;
 	va_list args;
-	char c;
 
 	va_start(args, format);
 	if (format == NULL)
@@ -25,26 +24,7 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
-			if (*format == '\0')
-				break;
-			switch (*format)
-			{
-				case 'c':
-				{
-					c = va_arg(args, int);
-					write(1, &c, 1);
-					length++;
-					break;
-				}
-				case '%':
-				{
-					write(1, "%", 1);
-					length++;
-					break;
-				}
-				default:
-					other_specifiers(format);
-			}
+			length += char_specifiers(format, args);
 		}
 		format++;
 	}
