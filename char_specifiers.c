@@ -30,7 +30,7 @@ int char_specifiers(const char *format, va_list args)
 		}
 		case '%':
 		{
-			write(1, "%", 1);
+			write(1, format, 1);
 			length++;
 			break;
 		}

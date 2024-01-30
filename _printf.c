@@ -10,21 +10,19 @@ int _printf(const char *format, ...)
 	int length = 0;
 	va_list args;
 
-	va_start(args, format);
 	if (format == NULL)
 		return (-1);
+	va_start(args, format);
 
 	while (*format)
 	{
 		if (*format != '%')
-		{
-			write(1, format, 1);
-			length++;
-		}
+			length += write(1, format, 1);
 		else
 		{
 			format++;
-			length += char_specifiers(format, args);
+			if (isValid_specifier(*format))
+				length += char_specifiers(format, args);
 		}
 		format++;
 	}

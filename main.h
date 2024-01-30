@@ -13,5 +13,6 @@ int char_specifiers(const char *format, va_list args);
 int int_specifiers(const char *format, va_list args);
 int _strlen(char *s);
 int _putchar(char c);
+int isValid_specifier(char c);
 
 #endif /* MAIN_H */
