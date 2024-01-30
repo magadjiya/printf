@@ -21,6 +21,8 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
+			if (*format == '\0')
+				return (-1);
 			if (isValid_specifier(*format))
 				length += char_specifiers(format, args);
 		}
