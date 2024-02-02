@@ -25,6 +25,11 @@ int _printf(const char *format, ...)
 				return (-1);
 			if (isValid_specifier(*format))
 				length += char_specifiers(format, args);
+			else
+			{
+				length += write(1, "%", 1);
+				length += write(1, format, 1);
+			}
 		}
 		format++;
 	}
