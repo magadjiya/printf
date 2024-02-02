@@ -59,15 +59,14 @@ int int_specifiers(const char *format, va_list args)
 
 	switch (*format)
 	{
-		case 'i' || 'd':
+		case 'i':
+		case 'd':
 		{
 			integer = va_arg(args, int);
 			intToStr = num_to_str(integer);
 			length += write(1, intToStr, _strlen(intToStr));
 			break;
 		}
-		default:
-			length += write(1, format, 1);
 	}
 	va_end(args);
 	return (length);
@@ -82,12 +81,45 @@ int int_specifiers(const char *format, va_list args)
  */
 char *num_to_str(int i)
 {
-	int length;
+	int count = 0, digit, first, last, len_i, size, isNegative = 0;
+	char temp;
 	char *str;
 
-	length = snprintf(NULL, 0, "%d", i);
-	str = malloc(length + 1);
-	snprintf(str, length + 1, "%d", i);
+	len_i = i < 0 ? -i : i;
+	while (len_i != 0)
+	{
+		len_i /= 10;
+		count++;
+	}
+
+	size = i < 0 ? count += 2 : count++; /* 2 for minus, 1 for null */
+	str = malloc(size * sizeof(char));
+	if (i < 0)
+	{
+		isNegative = 1;
+		i = -i;
+	}
+	while (i != 0)
+	{
+		digit = i % 10;
+		str[count++] = digit + '0';
+		i /= 10;
+	}
+
+	if (isNegative)
+		str[count++] = '-';
+	str[count] = '\0';
+
+	first = 0; /* Make the string un reversed */
+	last = count - 1;
+	while (first < last)
+	{
+		temp = str[first];
+		str[first] = str[last];
+		str[last] = temp;
+		first++;
+		last--;
+	}
 
 	return (str);
 }
