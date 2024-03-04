@@ -72,8 +72,6 @@ int int_specifiers(const char *format, va_list args)
 	return (length);
 }
 
-#include "main.h"
-
 /**
  * num_to_str - converts a number to a string
  * @i: the number
@@ -120,6 +118,5 @@ char *num_to_str(int i)
 		first++;
 		last--;
 	}
-
 	return (str);
 }
